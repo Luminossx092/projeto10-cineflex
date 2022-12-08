@@ -13,10 +13,10 @@ function App() {
     <GlobalStyle/>
       <Logo></Logo>
       <Routes>
-        <Route path="/" element={<PageConfirmacao />} />
-        <Route path="/assentos/IdAssento" element={<PageEscolhaAssento />} />
-        <Route path="/sessoes/IdSessoes" element={<PageMarcarHorario />} />
         <Route path="/" element={<PageCatalogoFilmes />} />
+        <Route path="/sessoes/:idFilme" element={<PageMarcarHorario />} />
+        <Route path="/assentos/IdAssento" element={<PageEscolhaAssento />} />
+        <Route path="/sucesso/" element={<PageConfirmacao />} />
       </Routes>
     </BrowserRouter>
   );
