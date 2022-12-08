@@ -5,6 +5,7 @@ const BotaoLaranja = styled.button`
     justify-content:center;
     align-items:center;
     margin:auto;
+    margin-bottom:147px;
     height: 42px;
     width: 225px;
     border-radius: 3px;

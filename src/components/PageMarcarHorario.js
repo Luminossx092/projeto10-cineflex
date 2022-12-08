@@ -45,6 +45,7 @@ export default function PageMarcarHorario() {
 const ContainerHorarios = styled.div`
     width:375px;
     margin:0 23px;
+    margin-bottom:117px; 
     row-gap:23px;
     display:flex;
     flex-direction:column;

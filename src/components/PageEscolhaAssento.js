@@ -1,23 +1,48 @@
-import React from "react"
+import axios from "axios"
+import React, { useState } from "react"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import BotaoLaranja from "../styles/BotaoLaranja"
 import ContainerComprador from "../styles/ContainerComprador"
 import ContainerFilmeEscolhido from "../styles/ContainerFilmeEscolhido"
 import ContainerLegendas from "../styles/ContainerLegendas"
 import ContainerSelecione from "../styles/ContainerSelecione"
+import Assento from "./Assento"
 
 export default function PageEscolhaAssento() {
+    const { idSessao } = useParams();
+    const [sessao, setSessao] = useState();
+    const [assentosEscolhidos, setAssentosEscolhidos] = useState([])
+
+    useState(() => {
+        axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`)
+            .then((res) => setSessao(res.data))
+            .catch((e) => console.log(e.response))
+    }, [])
+
+    if (sessao === undefined) {
+        return (<></>)
+    }
+
+    function AdicionarOuRemoveAssento(numero) {
+        if (!assentosEscolhidos.includes(numero)) {
+            setAssentosEscolhidos([...assentosEscolhidos, numero])
+        }
+        else {
+            setAssentosEscolhidos([...assentosEscolhidos.filter((a)=>a!==numero)]);
+        }
+    }
+
     return (
         <>
             <ContainerSelecione><p>Selecione o(s) assento(s)</p></ContainerSelecione>
             <ContainerAssentos>
-                <Assento><p>69</p></Assento>
-                <Assento><p>13</p></Assento>
-                <Assento><p>42</p></Assento>
-                <Assento><p>24</p></Assento>
-                <Assento><p>666</p></Assento>
-                <Assento><p>-1</p></Assento>
-                <Assento><p>7</p></Assento>
+                {sessao.seats.map(a => <Assento
+                    key={a.id} s
+                    seat={a}
+                    assentosEscolhidos={assentosEscolhidos}
+                    AdicionarOuRemoveAssento={AdicionarOuRemoveAssento}
+                />)}
             </ContainerAssentos>
             <ContainerLegendas>
                 <div>
@@ -46,11 +71,11 @@ export default function PageEscolhaAssento() {
             <BotaoLaranja>Reservar assento(s)</BotaoLaranja>
             <ContainerFilmeEscolhido>
                 <div className="QuadraBranco">
-                    <img src="https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""/>
+                    <img src={sessao.movie.posterURL} alt="" />
                 </div>
                 <div>
-                    <p>Pikachumbo</p>
-                    <p>quinta 15:69</p>
+                    <p>{sessao.movie.title}</p>
+                    <p>{`${sessao.day.weekday} ${sessao.name}`}</p>
                 </div>
             </ContainerFilmeEscolhido>
         </>
@@ -64,40 +89,6 @@ const ContainerAssentos = styled.div`
     margin-bottom:26px;
     display:flex;
     flex-wrap:wrap;
-    justify-content:space-between;
+    justify-content:flex-start;
     align-items:center;
-`
-
-const Assento = styled.div`
-    height: 26px;
-    width: 26px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius: 12px;
-    background-color:#C3CFD9;
-    border: 1px solid #808F9D;
-    p{
-        text-align:center;
-        align-self:center;
-        height: 9px;
-        width: 13px;
-        font-family: Roboto;
-        font-size: 11px;
-        font-weight: 400;
-        }
-`
-const BotaoReservarAssento = styled.button`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:auto;
-    height: 42px;
-    width: 225px;
-    border-radius: 3px;
-    background-color:#E8833A;
-    font-family: Roboto;
-    font-size: 18px;
-    font-weight: 400;
-    color:white;
 `
