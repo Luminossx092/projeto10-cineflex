@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Logo from "./components/Logo";
+import PageCatalogoFilmes from "./components/PageCatalogoFilmes";
+import PageConfirmacao from "./components/PageConfirmacao";
+import PageEscolhaAssento from "./components/PageEscolhaAssento";
+import PageMarcarHorario from "./components/PageMarcarHorario";
+import GlobalStyle from "./styles/GlobalStyles";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <GlobalStyle/>
+      <Logo></Logo>
+      <Routes>
+        <Route path="/" element={<PageConfirmacao />} />
+        <Route path="/assentos/IdAssento" element={<PageEscolhaAssento />} />
+        <Route path="/sessoes/IdSessoes" element={<PageMarcarHorario />} />
+        <Route path="/" element={<PageCatalogoFilmes />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
