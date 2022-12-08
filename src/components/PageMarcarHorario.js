@@ -1,25 +1,41 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import HorarioFilme from "./HorarioFilme"
 import ContainerSelecione from "../styles/ContainerSelecione"
 import ContainerFilmeEscolhido from "../styles/ContainerFilmeEscolhido"
+import { useParams } from "react-router-dom"
+import axios from "axios"
 
 export default function PageMarcarHorario() {
+    const {idFilme} = useParams();
+    const [sessoes, setSessoes] = useState();
+
+    useState(() => {
+        axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`)
+            .then((res) => setSessoes(res.data))
+            .catch((e) => console.log(e.response))
+    }, [])
+
+    if(sessoes === undefined){
+        return(<></>)
+    }
+    
     return (
         <>
             <ContainerSelecione>
                 <p>Selecione o horário</p>
             </ContainerSelecione>
             <ContainerHorarios>
-                <HorarioFilme></HorarioFilme>
-                <HorarioFilme></HorarioFilme>
+                {sessoes.days.map((s)=>
+                    <HorarioFilme key={s.id} sessao={s}/>
+                )}
             </ContainerHorarios>
             <ContainerFilmeEscolhido>
                 <div className="QuadraBranco">
-                    <img src="https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&w=400" />
+                    <img src={sessoes.posterURL} alt=""/>
                 </div>
                 <div>
-                    <p>Pikachumbo</p>
+                    <p>{sessoes.title}</p>
                 </div>
             </ContainerFilmeEscolhido>
         </>

@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PageCatalogoFilmes />} />
         <Route path="/sessoes/:idFilme" element={<PageMarcarHorario />} />
-        <Route path="/assentos/IdAssento" element={<PageEscolhaAssento />} />
+        <Route path="/assentos/:idSessao" element={<PageEscolhaAssento />} />
         <Route path="/sucesso/" element={<PageConfirmacao />} />
       </Routes>
     </BrowserRouter>

@@ -1,13 +1,19 @@
 import React from "react"
+import { Link } from "react-router-dom";
 import styled from "styled-components"
 
-export default function HorarioFilme() {
+export default function HorarioFilme({ sessao }) {
+    const { date, weekday, showtimes } = sessao;
+
     return (
         <>
-            <TextoData>Quinta-feira - 24/06/2021</TextoData>
+            <TextoData>{`${weekday} - ${date}`}</TextoData>
             <ContainerHoras>
-                <ContainerHorario><p>15:42</p></ContainerHorario>
-                <ContainerHorario><p>15:42</p></ContainerHorario>
+                {showtimes.map(h =>
+                    <Link to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
+                        <ContainerHorario key={h.id}><p>{h.name}</p></ContainerHorario>
+                    </Link>
+                )}
             </ContainerHoras>
         </>
     )

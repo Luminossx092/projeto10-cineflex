@@ -46,7 +46,7 @@ export default function PageEscolhaAssento() {
             <BotaoLaranja>Reservar assento(s)</BotaoLaranja>
             <ContainerFilmeEscolhido>
                 <div className="QuadraBranco">
-                    <img src="https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&w=400" />
+                    <img src="https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg?auto=compress&cs=tinysrgb&w=400" alt=""/>
                 </div>
                 <div>
                     <p>Pikachumbo</p>
