@@ -10,8 +10,8 @@ export default function HorarioFilme({ sessao }) {
             <TextoData>{`${weekday} - ${date}`}</TextoData>
             <ContainerHoras>
                 {showtimes.map(h =>
-                    <Link to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
-                        <ContainerHorario key={h.id}><p>{h.name}</p></ContainerHorario>
+                    <Link key={h.id} to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
+                        <ContainerHorario ><p>{h.name}</p></ContainerHorario>
                     </Link>
                 )}
             </ContainerHoras>

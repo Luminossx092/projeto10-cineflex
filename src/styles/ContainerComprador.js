@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 const ContainerComprador = styled.div`
+    form{
     width: 375px;
     margin: 40px auto;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:7px;
+
     p{
         font-family: Roboto;
         font-size: 18px;
@@ -28,6 +30,7 @@ const ContainerComprador = styled.div`
             font-style: italic;
             font-weight: 400;
         }
+    }
     }
 `
 

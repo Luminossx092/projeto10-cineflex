@@ -25,7 +25,6 @@ const ContainerFilmeEscolhido = styled.div`
             height: 72px;
             width: 48px;
             }
-        
     }
     div{
         display:flex;

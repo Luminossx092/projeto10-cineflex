@@ -10,19 +10,20 @@ const ContainerLegendas = styled.div`
         display:flex;
         flex-direction:column;
         align-items:center;
-        button{
+        div{
             height: 25px;
             width: 25px;
             border-radius: 17px;
-            .verde{
+            background-color:black;
+            &.verde{
                 border: 1px solid #0E7D71;
                 background-color:#1AAE9E;
             }
-            .cinza{
+            &.cinza{
                 border: 1px solid #7B8B99;
                 background-color:#C3CFD9;
             }
-            .amarelo{
+            &.amarelo{
                 border: 1px solid #F7C52B;
                 background-color:#FBE192;
             }

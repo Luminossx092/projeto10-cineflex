@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, { useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
 import BotaoLaranja from "../styles/BotaoLaranja"
 import ContainerComprador from "../styles/ContainerComprador"
@@ -13,6 +13,9 @@ export default function PageEscolhaAssento() {
     const { idSessao } = useParams();
     const [sessao, setSessao] = useState();
     const [assentosEscolhidos, setAssentosEscolhidos] = useState([])
+    const [name, setName] = useState("");
+    const [CPF, setCPF] = useState("");
+    const navigate = useNavigate()
 
     useState(() => {
         axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`)
@@ -29,8 +32,16 @@ export default function PageEscolhaAssento() {
             setAssentosEscolhidos([...assentosEscolhidos, numero])
         }
         else {
-            setAssentosEscolhidos([...assentosEscolhidos.filter((a)=>a!==numero)]);
+            setAssentosEscolhidos([...assentosEscolhidos.filter((a) => a !== numero)]);
         }
+    }
+
+    function ReservarAssentos(e) {
+        e.preventDefault();
+        const temp = {ids: assentosEscolhidos,name,cpf: CPF}
+        axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",temp)
+        .then(()=>navigate("/sucesso/"))
+        .catch((err)=>console.log(err.response))
     }
 
     return (
@@ -46,29 +57,38 @@ export default function PageEscolhaAssento() {
             </ContainerAssentos>
             <ContainerLegendas>
                 <div>
-                    <button className="verde"></button>
+                    <div className="verde"></div>
                     <p>Selecionado</p>
                 </div>
                 <div>
-                    <button className="cinza"></button>
+                    <div className="cinza"></div>
                     <p>Disponível</p>
                 </div>
                 <div>
-                    <button className="amarelo"></button>
+                    <div className="amarelo"></div>
                     <p>Indisponível</p>
                 </div>
             </ContainerLegendas>
             <ContainerComprador>
-                <div>
-                    <p>Nome do comprador</p>
-                    <input placeholder="Digite seu nome..."></input>
-                </div>
-                <div>
-                    <p>CPF do comprador</p>
-                    <input placeholder="Digite seu CPF..."></input>
-                </div>
+                <form onSubmit={ReservarAssentos}>
+                    <div>
+                        <p>Nome do comprador</p>
+                        <input
+                            value={name}
+                            onChange={e => setName(e.target.value)} 
+                            placeholder="Digite seu nome..."></input>
+                    </div>
+                    <div>
+                        <p>CPF do comprador</p>
+                        <input
+                            type="number"
+                            value={CPF}
+                            onChange={e => setCPF(e.target.value)}
+                            placeholder="Digite seu CPF..."></input>
+                    </div>
+                    <BotaoLaranja>Reservar assento(s)</BotaoLaranja>
+                </form>
             </ContainerComprador>
-            <BotaoLaranja>Reservar assento(s)</BotaoLaranja>
             <ContainerFilmeEscolhido>
                 <div className="QuadraBranco">
                     <img src={sessao.movie.posterURL} alt="" />
