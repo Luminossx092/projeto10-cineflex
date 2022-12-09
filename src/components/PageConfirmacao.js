@@ -11,23 +11,23 @@ export default function PageConfirmacao({dadosComprador,dadosSessao}) {
         <>
             <ContainerPedidoFeitoSucesso><p>Pedido feito com sucesso!</p></ContainerPedidoFeitoSucesso>
             <ContainerDadosComprador>
-                <DadosComprador>
+                <DadosComprador data-test="movie-info">
                     <h1>Filme e sessão</h1>
                     <p>{title}</p>
                     <p>{date} {showtime}</p>
                 </DadosComprador>
-                <DadosComprador>
+                <DadosComprador data-test="seats-info">
                     <h1>Ingressos</h1>
                     {ids.map((i)=><p key={i}>Assento {i}</p>)}
                 </DadosComprador>
-                <DadosComprador>
+                <DadosComprador data-test="client-info">
                     <h1>Comprador</h1>
                     <p>Nome: {name}</p>
                     <p>CPF: {cpf}</p>
                 </DadosComprador>
             </ContainerDadosComprador>
             <Link to="/">
-                <BotaoLaranja>Voltar ao Home</BotaoLaranja>
+                <BotaoLaranja data-test="go-home-btn">Voltar ao Home</BotaoLaranja>
             </Link>
         </>
     )

@@ -20,7 +20,7 @@ export default function PageCatalogoFilmes() {
             </ContainerSelecione>
             <ContainerFilmes>
                 {filmes.map(f =>
-                    <Link key={f.id} to={`/sessoes/${f.id}`}>
+                    <Link data-test="movie" key={f.id} to={`/sessoes/${f.id}`}>
                         <img src={f.posterURL} alt=""/>
                     </Link>)}
             </ContainerFilmes>

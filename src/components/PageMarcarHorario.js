@@ -6,8 +6,8 @@ import ContainerFilmeEscolhido from "../styles/ContainerFilmeEscolhido"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 
-export default function PageMarcarHorario({setDadosSessao}) {
-    const {idFilme} = useParams();
+export default function PageMarcarHorario({ setDadosSessao }) {
+    const { idFilme } = useParams();
     const [sessoes, setSessoes] = useState();
 
     useState(() => {
@@ -16,23 +16,25 @@ export default function PageMarcarHorario({setDadosSessao}) {
             .catch((e) => console.log(e.response))
     }, [])
 
-    if(sessoes === undefined){
-        return(<></>)
+    if (sessoes === undefined) {
+        return (<></>)
     }
-    
+
     return (
         <>
             <ContainerSelecione>
                 <p>Selecione o horário</p>
             </ContainerSelecione>
             <ContainerHorarios>
-                {sessoes.days.map((s)=>
-                    <HorarioFilme key={s.id} sessao={s} setDadosSessao={setDadosSessao} title={sessoes.title}/>
+                {sessoes.days.map((s) =>
+                    <div data-test="movie-day">
+                        <HorarioFilme key={s.id} sessao={s} setDadosSessao={setDadosSessao} title={sessoes.title} />
+                    </div>
                 )}
             </ContainerHorarios>
-            <ContainerFilmeEscolhido>
+            <ContainerFilmeEscolhido data-test="footer">
                 <div className="QuadraBranco">
-                    <img src={sessoes.posterURL} alt=""/>
+                    <img src={sessoes.posterURL} alt="" />
                 </div>
                 <div>
                     <p>{sessoes.title}</p>

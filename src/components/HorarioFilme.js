@@ -8,9 +8,9 @@ export default function HorarioFilme({ sessao ,setDadosSessao, title}) {
     return (
         <>
             <TextoData>{`${weekday} - ${date}`}</TextoData>
-            <ContainerHoras>
+            <ContainerHoras >
                 {showtimes.map(h =>
-                    <Link key={h.id} onClick={()=>setDadosSessao({title, date, showtime:h.name})} to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
+                    <Link data-test="showtime" key={h.id} onClick={()=>setDadosSessao({title, date, showtime:h.name})} to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
                         <ContainerHorario ><p>{h.name}</p></ContainerHorario>
                     </Link>
                 )}

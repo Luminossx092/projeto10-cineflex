@@ -9,7 +9,7 @@ import ContainerLegendas from "../styles/ContainerLegendas"
 import ContainerSelecione from "../styles/ContainerSelecione"
 import Assento from "./Assento"
 
-export default function PageEscolhaAssento({setDadosComprador}) {
+export default function PageEscolhaAssento({ setDadosComprador }) {
     const { idSessao } = useParams();
     const [sessao, setSessao] = useState();
     const [assentosEscolhidos, setAssentosEscolhidos] = useState([])
@@ -54,6 +54,7 @@ export default function PageEscolhaAssento({setDadosComprador}) {
             <ContainerSelecione><p>Selecione o(s) assento(s)</p></ContainerSelecione>
             <ContainerAssentos>
                 {sessao.seats.map(a => <Assento
+                    data-test="seat"
                     key={a.id} s
                     seat={a}
                     assentosEscolhidos={assentosEscolhidos}
@@ -79,24 +80,26 @@ export default function PageEscolhaAssento({setDadosComprador}) {
                     <div>
                         <p>Nome do comprador</p>
                         <input
+                            data-test="client-name"
                             required
                             value={name}
                             onChange={e => setName(e.target.value)}
                             placeholder="Digite seu nome..."></input>
                     </div>
-                    <div>
+                    <div >
                         <p>CPF do comprador</p>
                         <input
+                            data-test="client-cpf"
                             required
                             type="number"
                             value={CPF}
                             onChange={e => setCPF(e.target.value)}
                             placeholder="Digite seu CPF..."></input>
                     </div>
-                    <BotaoLaranja>Reservar assento(s)</BotaoLaranja>
+                    <BotaoLaranja data-test="book-seat-btn">Reservar assento(s)</BotaoLaranja>
                 </form>
             </ContainerComprador>
-            <ContainerFilmeEscolhido>
+            <ContainerFilmeEscolhido data-test="footer" >
                 <div className="QuadraBranco">
                     <img src={sessao.movie.posterURL} alt="" />
                 </div>
