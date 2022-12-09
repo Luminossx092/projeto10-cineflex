@@ -6,7 +6,7 @@ import ContainerFilmeEscolhido from "../styles/ContainerFilmeEscolhido"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 
-export default function PageMarcarHorario() {
+export default function PageMarcarHorario({setDadosSessao}) {
     const {idFilme} = useParams();
     const [sessoes, setSessoes] = useState();
 
@@ -27,7 +27,7 @@ export default function PageMarcarHorario() {
             </ContainerSelecione>
             <ContainerHorarios>
                 {sessoes.days.map((s)=>
-                    <HorarioFilme key={s.id} sessao={s}/>
+                    <HorarioFilme key={s.id} sessao={s} setDadosSessao={setDadosSessao} title={sessoes.title}/>
                 )}
             </ContainerHorarios>
             <ContainerFilmeEscolhido>

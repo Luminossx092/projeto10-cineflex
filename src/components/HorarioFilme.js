@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 
-export default function HorarioFilme({ sessao }) {
+export default function HorarioFilme({ sessao ,setDadosSessao, title}) {
     const { date, weekday, showtimes } = sessao;
 
     return (
@@ -10,7 +10,7 @@ export default function HorarioFilme({ sessao }) {
             <TextoData>{`${weekday} - ${date}`}</TextoData>
             <ContainerHoras>
                 {showtimes.map(h =>
-                    <Link key={h.id} to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
+                    <Link key={h.id} onClick={()=>setDadosSessao({title, date, showtime:h.name})} to={`/assentos/${h.id}`} style={{ textDecoration: 'none' }}>
                         <ContainerHorario ><p>{h.name}</p></ContainerHorario>
                     </Link>
                 )}

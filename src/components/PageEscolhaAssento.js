@@ -9,7 +9,7 @@ import ContainerLegendas from "../styles/ContainerLegendas"
 import ContainerSelecione from "../styles/ContainerSelecione"
 import Assento from "./Assento"
 
-export default function PageEscolhaAssento() {
+export default function PageEscolhaAssento({setDadosComprador}) {
     const { idSessao } = useParams();
     const [sessao, setSessao] = useState();
     const [assentosEscolhidos, setAssentosEscolhidos] = useState([])
@@ -38,11 +38,16 @@ export default function PageEscolhaAssento() {
 
     function ReservarAssentos(e) {
         e.preventDefault();
-        const temp = {ids: assentosEscolhidos,name,cpf: CPF}
-        axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",temp)
-        .then(()=>navigate("/sucesso/"))
-        .catch((err)=>console.log(err.response))
+        const temp = { ids: assentosEscolhidos, name, cpf: CPF }
+        axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", temp)
+            .then(() => {
+                setDadosComprador(temp);
+                navigate("/sucesso/");
+            })
+            .catch((err) => console.log(err))
     }
+
+
 
     return (
         <>
@@ -74,13 +79,15 @@ export default function PageEscolhaAssento() {
                     <div>
                         <p>Nome do comprador</p>
                         <input
+                            required
                             value={name}
-                            onChange={e => setName(e.target.value)} 
+                            onChange={e => setName(e.target.value)}
                             placeholder="Digite seu nome..."></input>
                     </div>
                     <div>
                         <p>CPF do comprador</p>
                         <input
+                            required
                             type="number"
                             value={CPF}
                             onChange={e => setCPF(e.target.value)}

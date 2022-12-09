@@ -1,29 +1,34 @@
 import React from "react"
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BotaoLaranja from "../styles/BotaoLaranja";
 
-export default function PageConfirmacao(){
-    return(
+export default function PageConfirmacao({dadosComprador,dadosSessao}) {
+    const{title, date, showtime} = dadosSessao;
+    const {name, cpf, ids} = dadosComprador;
+
+    return (
         <>
             <ContainerPedidoFeitoSucesso><p>Pedido feito com sucesso!</p></ContainerPedidoFeitoSucesso>
             <ContainerDadosComprador>
                 <DadosComprador>
                     <h1>Filme e sessão</h1>
-                    <p>Enola Holmes</p>
-                    <p>24/06/2021 15:00</p>
+                    <p>{title}</p>
+                    <p>{date} {showtime}</p>
                 </DadosComprador>
                 <DadosComprador>
                     <h1>Ingressos</h1>
-                    <p>Assento 15</p>
-                    <p>Assento 16</p>
+                    {ids.map((i)=><p key={i}>Assento {i}</p>)}
                 </DadosComprador>
                 <DadosComprador>
                     <h1>Comprador</h1>
-                    <p>Nome: João da Silva Sauro</p>
-                    <p>CPF: 123.456.789-10</p>
+                    <p>Nome: {name}</p>
+                    <p>CPF: {cpf}</p>
                 </DadosComprador>
             </ContainerDadosComprador>
-            <BotaoLaranja>Voltar ao Home</BotaoLaranja>
+            <Link to="/">
+                <BotaoLaranja>Voltar ao Home</BotaoLaranja>
+            </Link>
         </>
     )
 }
