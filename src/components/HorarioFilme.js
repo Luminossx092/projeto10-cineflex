@@ -6,7 +6,7 @@ export default function HorarioFilme({ sessao ,setDadosSessao, title}) {
     const { date, weekday, showtimes } = sessao;
 
     return (
-        <>
+        <div data-test="movie-day">
             <TextoData>{`${weekday} - ${date}`}</TextoData>
             <ContainerHoras >
                 {showtimes.map(h =>
@@ -15,7 +15,7 @@ export default function HorarioFilme({ sessao ,setDadosSessao, title}) {
                     </Link>
                 )}
             </ContainerHoras>
-        </>
+        </div>
     )
 }
 

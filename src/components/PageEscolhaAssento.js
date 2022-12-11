@@ -47,14 +47,11 @@ export default function PageEscolhaAssento({ setDadosComprador }) {
             .catch((err) => console.log(err))
     }
 
-
-
     return (
         <>
             <ContainerSelecione><p>Selecione o(s) assento(s)</p></ContainerSelecione>
             <ContainerAssentos>
-                {sessao.seats.map(a => <Assento
-                    data-test="seat"
+                {sessao.seats.map(a => <Assento                  
                     key={a.id} s
                     seat={a}
                     assentosEscolhidos={assentosEscolhidos}

@@ -27,9 +27,7 @@ export default function PageMarcarHorario({ setDadosSessao }) {
             </ContainerSelecione>
             <ContainerHorarios>
                 {sessoes.days.map((s) =>
-                    <div data-test="movie-day">
-                        <HorarioFilme key={s.id} sessao={s} setDadosSessao={setDadosSessao} title={sessoes.title} />
-                    </div>
+                    <HorarioFilme key={s.id} sessao={s} setDadosSessao={setDadosSessao} title={sessoes.title} />
                 )}
             </ContainerHorarios>
             <ContainerFilmeEscolhido data-test="footer">

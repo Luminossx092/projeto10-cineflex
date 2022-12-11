@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const BotaoLaranja = styled.button`
+    text-decoration: 'none' ;
     display:flex;
     justify-content:center;
     align-items:center;

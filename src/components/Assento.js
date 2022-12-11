@@ -13,6 +13,7 @@ export default function Assento({seat,assentosEscolhidos,AdicionarOuRemoveAssent
 
     return(
          <ContainerAssento 
+            data-test="seat"
             onClick={()=>isAvailable?AdicionarOuRemoveAssento(name):alert("Esse assento não está disponível")}
             color={isAvailable?VerificaSeEstaNaListaAssentos():["#FBE192","F7C52B"]}>
             <p>{name}</p>

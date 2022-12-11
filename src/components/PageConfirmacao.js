@@ -27,7 +27,7 @@ export default function PageConfirmacao({dadosComprador,dadosSessao}) {
                 </DadosComprador>
             </ContainerDadosComprador>
             <Link to="/">
-                <BotaoLaranja data-test="go-home-btn">Voltar ao Home</BotaoLaranja>
+                <BotaoLaranja data-test="go-home-btn" >Voltar ao Home</BotaoLaranja>
             </Link>
         </>
     )
