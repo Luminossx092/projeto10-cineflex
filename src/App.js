@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<PageCatalogoFilmes />} />
         <Route path="/sessoes/:idFilme" element={<PageMarcarHorario setDadosSessao={setDadosSessao}/>} />
         <Route path="/assentos/:idSessao" element={<PageEscolhaAssento setDadosComprador={setDadosComprador} />} />
-        <Route path="/sucesso/" element={<PageConfirmacao dadosComprador={dadosComprador} dadosSessao={dadosSessao} />} />
+        <Route path="/sucesso" element={<PageConfirmacao dadosComprador={dadosComprador} dadosSessao={dadosSessao} />} />
       </Routes>
     </BrowserRouter>
   );

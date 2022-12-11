@@ -38,11 +38,13 @@ export default function PageEscolhaAssento({ setDadosComprador }) {
 
     function ReservarAssentos(e) {
         e.preventDefault();
-        const temp = { ids: assentosEscolhidos, name, cpf: CPF }
+        const assentos = assentosEscolhidos.map(n=>Number(n));
+        const temp = { ids:assentos,  name, cpf: CPF }
+        console.log(temp);
         axios.post("https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many", temp)
             .then(() => {
                 setDadosComprador(temp);
-                navigate("/sucesso/");
+                navigate("/sucesso");
             })
             .catch((err) => console.log(err))
     }
